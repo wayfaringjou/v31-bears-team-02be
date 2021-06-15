@@ -5,6 +5,7 @@ import path from 'path';
 import express from 'express';
 
 import logger from 'morgan';
+import cors from 'cors';
 
 import usersRouter from './auth/users.router';
 import authRouter from './auth/auth.router';
@@ -17,6 +18,10 @@ const app = express();
 
 app.use(logger((NODE_ENV === 'production') ? 'common' : 'common', {
   skip: () => NODE_ENV === 'test',
+}));
+
+app.use(cors({
+  origin: 'http://localhost:3000',
 }));
 
 app.use(express.static(path.join(__dirname, 'frontend', 'build')));
