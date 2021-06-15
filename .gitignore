@@ -5,3 +5,9 @@
 !.elasticbeanstalk/*.global.yml
 
 artguessr.pem
+
+# npm packages
+node_modules
+
+# enviroment file
+.env
