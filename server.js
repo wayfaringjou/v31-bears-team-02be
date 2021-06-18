@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/flower', async (req, res) => {
-  const test = await req.app.get('db').select('*').from('user');
+  const test = await req.app.get('db').select('*').from('users');
   res.json({
     name: 'Dandelion',
     colour: 'Blue-ish',
