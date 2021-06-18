@@ -60,7 +60,7 @@ app.get('/flower', async (req, res) => {
   res.json({
     name: 'Dandelion',
     colour: 'Blue-ish',
-    test
+    //test
   });
 });
 

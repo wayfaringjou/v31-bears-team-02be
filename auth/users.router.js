@@ -20,6 +20,7 @@ usersRouter
     // Check that username isn't taken
     try {
       const userTaken = await UsersService.usernameTaken(db, username);
+      console.log(userTaken);
       if (userTaken) {
         return res.status(400).json({
           error: 'Username is already taken'
@@ -34,11 +35,11 @@ usersRouter
         username: sanitizedUsername,
         password: hashedPassword,
       });
-
+      console.log(hashedPassword, newUser)
       // Return created status and new user
       return res.status(201)
         .location(path.posix.join(req.originalUrl, `/${newUser.id}`))
-        .json({ ...UsersService.serializeUser(newUser) });
+        .json({ ...UsersService.serializeUser(newUser[0]) });
     } catch (error) {
       next(error);
     }
