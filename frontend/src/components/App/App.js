@@ -16,7 +16,7 @@ import Game from "../Game/Game";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
-
+  const [modalContent, setModalContent] = React.useState(<></>);
   return (
     <div className="App">
       <TopNavBar
@@ -24,6 +24,7 @@ function App() {
         isAuthenticated={isAuthenticated}
         setModalOpen={setModalOpen}
         modalOpen={modalOpen}
+        setModalContent={setModalContent}
       />
       <Switch>
         <PublicRoute
@@ -47,7 +48,7 @@ function App() {
       </Switch>
       <Footer />
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-        <h2>Sign up</h2>
+        {modalContent}
       </Modal>
     </div>
   );

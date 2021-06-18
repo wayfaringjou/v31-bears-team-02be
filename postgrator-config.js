@@ -8,7 +8,7 @@ let config;
 
 if (NODE_ENV === 'test' || NODE_ENV === 'development') {
   config = {
-    migrationsDirectory: 'migrations',
+    migrationDirectory: 'migrations',
     driver: 'pg',
     host: RDS_HOSTNAME,
     port: RDS_PORT,
@@ -18,7 +18,7 @@ if (NODE_ENV === 'test' || NODE_ENV === 'development') {
   };
 } else {
   config = {
-    migrationsDirectory: 'migrations',
+    migrationDirectory: 'migrations',
     driver: 'pg',
     host: RDS_HOSTNAME,
     port: RDS_PORT,

@@ -2,8 +2,10 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import "./TopNavBar.css";
 import { Link } from "react-router-dom";
+import SignUpForm from "../SignUpForm";
+import SignInForm from "../SignInForm";
 
-const TopNavBar = ({ onLogin, isAuthenticated, modalOpen, setModalOpen }) => (
+const TopNavBar = ({ onLogin, isAuthenticated, modalOpen, setModalOpen, setModalContent }) => (
   <header className="top-nav-header">
     <h2>
       <Link to="/">ArtGuessr</Link>
@@ -32,6 +34,7 @@ const TopNavBar = ({ onLogin, isAuthenticated, modalOpen, setModalOpen }) => (
             <button
               type="button"
               onClick={() => {
+                setModalContent(<SignUpForm />)
                 setModalOpen(true);
               }}
             >
@@ -39,7 +42,10 @@ const TopNavBar = ({ onLogin, isAuthenticated, modalOpen, setModalOpen }) => (
             </button>
           </li>
           <li>
-            <button type="button" onClick={() => onLogin(true)}>
+            <button type="button" onClick={() => {
+              setModalContent(<SignInForm />);
+              setModalOpen(true);
+            }}>
               Sign in
             </button>
           </li>
@@ -54,6 +60,7 @@ TopNavBar.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
+  setModalContent: PropTypes.func.isRequired,
 };
 
 export default TopNavBar;

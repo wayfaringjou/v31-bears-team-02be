@@ -29,13 +29,24 @@ const app = express();
 app.set('db', knex({
   client: 'pg',
   connection: {
-    host: RDS_HOSTNAME,
+    host: process.env.RDS_HOSTNAME,
     port: RDS_PORT,
     user: RDS_USERNAME,
     password: RDS_PASSWORD,
     database: NODE_ENV === 'test' ? TEST_RDS_DB_NAME : RDS_DB_NAME,
   },
 }));
+
+const db = knex({
+  client: 'pg',
+  connection: {
+    host: process.env.RDS_HOSTNAME,
+    port: RDS_PORT,
+    user: RDS_USERNAME,
+    password: RDS_PASSWORD,
+    database: NODE_ENV === 'test' ? TEST_RDS_DB_NAME : RDS_DB_NAME,
+  },
+});
 
 // Setup logger with formats for each enviroment ('common' for production and 'dev' for development)
 app.use(logger((NODE_ENV === 'production') ? 'common' : 'dev', {
@@ -50,6 +61,8 @@ app.use(logger('common', {
 
 // Serve static files located in frontend/build
 app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+
+
 
 app.get('/', (req, res) => {
   res.send('just gonna send it');
